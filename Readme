@@ -47,9 +47,17 @@ Step 8 : Access Jenkins server using the public DNS of your ec2 on port 8080
    example : http://3.89.79.74:8080/
 
 
-Note : Here you might have to allow port 8080 in your security group settings
 
-Check admin password in /etc/
+In case you face issues with credentials. 
+
+Open the file  /var/log/jenkins/jenkins.log and locate the password from the file
+
+/Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+This may also be found at: /var/lib/jenkins/secrets/initialAdminPassword/
+
+
 
 
 
