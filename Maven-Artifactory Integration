@@ -1,0 +1,94 @@
+
+# Jenkins Maven Integration
+ 
+	
+Install Maven plugin
+
+	Manage Plugin -> Search Maven Integration and Install without restart
+
+	Manage Jenkins -> Global Configuration -> Configure JDK, MAVEN configuration
+	
+		Point to MAVEN HOME directory. Also make sure the Jenkins user has ownership on that.
+	
+		chown -R jenkins:jenkins apache-maven-3.6.3
+
+
+Install artifactory plugin
+--------------------------
+
+Jenkins -> Manage Jenkins -> Plugin Manager 
+
+Search “artifactory” and install the plugin. Choose Install without restart
+
+
+Configure Artifactory Credentials in Jenkins
+--------------------------
+
+Global Credentials -> Add Credentials -> User name and Password for the artifactory admin
+
+
+Add JDK in Jenkins
+
+Global tools configuration
+
+	JDK -> JDK Installation -> Mention ID and the JDK path
+
+Add Maven 
+
+	Maven -> Add an identifier and the Maven path
+
+
+Jenkins Artifactory Integration
+--------------------------
+
+Jenkins -> System Configuration -> Artifactory
+
+Use an ID and configure the Artifactory URL.  Use the artifactory credentials configured in the previous step.
+
+
+
+
+Artifactory Build Integration and Promotion
+-------------------------------------------
+
+
+  New Item - > Create a Maven Project
+
+  Configure Git to point to hello maven project
+  
+  https://github.com/nevin-cleetus/hello.git
+
+	Build Environment  ->  Resolve Artifacts from Repository
+
+		Artifactory Server -> Enter server details and refresh
+		
+			Resolution release repository    -> Virtual Repository Repo
+
+			Resolution snapshot repository	->  Virtual Snapshot Repo
+
+	Resolution always happens through virtual repository
+
+	
+	Post Build Action
+
+		Add Post Build Action -> Deploy artifacts to artifactory
+
+			Target release repository    -> Local Repository Repo
+
+			Target snapshot repository ->  Local Snapshot Repo
+		
+
+	Check Deploy Maven artifacts
+
+	
+	Build	
+			Root Pom   			pom.xml
+			Goals and Options		clean install
+
+             Make sure capture and Publish Info is selected (Very important to capture the build information which is shared by the build tool. Implicit project details. 
+
+              Select “Include Environment details”
+              Select “Allow promotion of non-staged builds”
+          
+
+               
