@@ -46,6 +46,8 @@ Step 6 : Install Jenkins
    
    systemctl status jenkins
    
+   systemctl status jenkins
+   
    systemctl enable jenkins
    
 Step 7 : Start jenkins
