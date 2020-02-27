@@ -68,6 +68,12 @@ Please use the following password to proceed to installation:
 This may also be found at: /var/lib/jenkins/secrets/initialAdminPassword/
 
 
+Uninstall Jenkins
+
+systemctl stop jenkins
+sudo yum remove jenkins
+
+sudo rm -r /var/lib/jenkins
 
 
 
